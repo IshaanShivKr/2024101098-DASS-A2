@@ -7,7 +7,7 @@ class Registration:
     def __init__(self, system: StreetRaceSystem):
         self.system = system
 
-    def register_member(self, name: str, role: str):
+    def register_member(self, name: str, role: str) -> None:
         name = name.strip()
         if not name:
             raise ValueError("Name cannot be empty")
