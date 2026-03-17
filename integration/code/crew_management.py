@@ -6,25 +6,20 @@ class CrewManagement:
     def __init__(self, system: StreetRaceSystem):
         self.system = system
 
-    def set_skill(self, name: str, skill: int):
-        if name not in self.system.crew:
-            raise ValueError("Member not found")
-
-        if skill < 0:
-            raise ValueError("Skill must be non-negative")
-
-        self.system.crew[name].skill = skill
-
-    def update_role(self, name: str, new_role: str):
-        if name not in self.system.crew:
-            raise ValueError("Member not found")
+    def update_role(self, name: str, new_role: str) -> None:
+        member = self._get_member(name)
 
         try:
             role_enum = Role(new_role.strip().lower())
-        except ValueError:
-            raise ValueError(f"Invalid role: {new_role}")
+        except ValueError as exc:
+            raise ValueError(f"Invalid role: {new_role}") from exc
 
-        self.system.crew[name].role = role_enum
+        member.role = role_enum
 
-    def get_by_role(self, role: Role):
-        return [m for m in self.system.crew.values() if m.role == role]
+    def set_skill(self, name: str, skill: int) -> None:
+        member = self._get_member(name)
+
+        if skill < 0:
+            raise ValueError("Skill must be non-negative.")
+
+        member.skill = skill
