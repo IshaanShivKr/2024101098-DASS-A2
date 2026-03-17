@@ -25,3 +25,6 @@ class CrewManagement:
             raise ValueError(f"Invalid role: {new_role}")
 
         self.system.crew[name].role = role_enum
+
+    def get_by_role(self, role: Role):
+        return [m for m in self.system.crew.values() if m.role == role]
