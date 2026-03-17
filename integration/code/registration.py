@@ -21,3 +21,12 @@ class Registration:
             raise ValueError("Member already exists")
 
         self.system.crew[name] = CrewMember(name=name, role=role_enum)
+
+    def get_member(self, name: str) -> CrewMember:
+        clean_name = name.strip()
+        if clean_name not in self.system.crew:
+            raise ValueError("Crew member not found.")
+        return self.system.crew[clean_name]
+    
+    def list_members(self) -> list[str]:
+        return list(self.system.crew.keys())
