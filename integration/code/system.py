@@ -7,3 +7,4 @@ class StreetRaceSystem:
         self.inventory = Inventory()
         self.races: list[Race] = []
         self.missions: list[Mission] = []
+        self.rankings: dict[str, int] = {}
