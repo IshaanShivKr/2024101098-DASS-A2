@@ -1,3 +1,5 @@
+"""Property and PropertyGroup models for purchasable board tiles."""
+
 class Property:
     """Represents a single purchasable property tile on the MoneyPoly board."""
 

@@ -1,3 +1,5 @@
+"""User interface utilities for displaying game information and input handling."""
+
 def print_banner(title):
     """Print a decorated section header."""
     width = 52
