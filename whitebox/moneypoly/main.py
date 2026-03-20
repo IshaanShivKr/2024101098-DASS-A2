@@ -1,5 +1,3 @@
-"""Entry point for running the MoneyPoly game from the command line."""
-
 from moneypoly.game import Game
 
 

@@ -1,5 +1,3 @@
-"""Core game engine managing turns, players, board interactions, and rules."""
-
 import os
 
 from moneypoly.config import (

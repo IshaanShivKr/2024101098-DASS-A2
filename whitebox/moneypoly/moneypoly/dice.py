@@ -1,5 +1,3 @@
-"""Dice module simulating two dice and tracking consecutive doubles."""
-
 import random
 from moneypoly.config import BOARD_SIZE
 

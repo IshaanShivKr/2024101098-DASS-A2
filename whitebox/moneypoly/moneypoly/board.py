@@ -1,5 +1,3 @@
-"""Board module defining tiles, properties, and position-based logic."""
-
 from moneypoly.property import Property, PropertyGroup
 from moneypoly.config import (
     JAIL_POSITION,

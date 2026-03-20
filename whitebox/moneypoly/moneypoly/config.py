@@ -1,5 +1,3 @@
-"""Configuration constants for game rules, board layout, and initial values."""
-
 STARTING_BALANCE = 1500
 GO_SALARY = 200
 BOARD_SIZE = 40
