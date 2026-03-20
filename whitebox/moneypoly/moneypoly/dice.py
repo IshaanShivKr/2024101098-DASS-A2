@@ -1,7 +1,6 @@
 """Dice module simulating two dice and tracking consecutive doubles."""
 
 import random
-from moneypoly.config import BOARD_SIZE
 
 class Dice:
     """Simulates a pair of six-sided dice with consecutive-doubles tracking."""

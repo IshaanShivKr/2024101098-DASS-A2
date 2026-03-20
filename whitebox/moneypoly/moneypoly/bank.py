@@ -1,6 +1,5 @@
 """Bank module handling funds, collections, payouts, and loans."""
 
-import math
 from moneypoly.config import BANK_STARTING_FUNDS
 
 
