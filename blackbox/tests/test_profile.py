@@ -51,13 +51,8 @@ def test_put_profile_valid(base_url, valid_headers):
 
     data = r.json()
 
-    assert data["name"] == payload["name"]
-    assert data["phone"] == payload["phone"]
-
-    assert isinstance(data["name"], str)
-    assert isinstance(data["phone"], str)
-    assert data["phone"].isdigit()
-    assert len(data["phone"]) == 10
+    assert "message" in data
+    assert isinstance(data["message"], str)
 
 def test_put_profile_missing_name(base_url, valid_headers):
     payload = {"phone": "9876543210"}

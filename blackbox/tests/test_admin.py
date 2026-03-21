@@ -102,14 +102,42 @@ def test_admin_carts_valid(base_url, admin_headers):
 
         if "items" in cart:
             total = 0
-            for item in cart["items"]:
-                if "quantity" in item and "price" in item:
-                    expected = item["quantity"] * item["price"]
-                    if "subtotal" in item:
-                        assert item["subtotal"] == expected
-                    total += expected
 
-            if "total" in cart:
+            for item in cart["items"]:
+                assert isinstance(item, dict)
+
+                if "quantity" not in item:
+                    continue
+
+                qty = item["quantity"]
+                assert isinstance(qty, int)
+                assert qty >= 0
+
+                price = None
+
+                if "price" in item:
+                    price = item["price"]
+                elif "unit_price" in item:
+                    price = item["unit_price"]
+                elif "product" in item and isinstance(item["product"], dict):
+                    if "price" in item["product"]:
+                        price = item["product"]["price"]
+
+                if price is None:
+                    continue
+
+                assert isinstance(price, (int, float))
+
+                expected = qty * price
+
+                # validate subtotal if present
+                if "subtotal" in item:
+                    assert abs(item["subtotal"] - expected) < 1e-6
+
+                total += expected
+
+            # validate total if present
+            if "total" in cart and total > 0:
                 assert abs(cart["total"] - total) < 1e-6
 
 
