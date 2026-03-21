@@ -12,14 +12,14 @@ def test_get_profile_valid(base_url, valid_headers):
     data = r.json()
     assert isinstance(data, dict)
 
-    assert "name" in data
-    assert "phone" in data
-
-    # correctness checks
+    assert isinstance(data["user_id"], int)
     assert isinstance(data["name"], str)
-    assert 2 <= len(data["name"]) <= 50
-
+    assert isinstance(data["email"], str)
     assert isinstance(data["phone"], str)
+    assert isinstance(data["wallet_balance"], (int, float))
+    assert isinstance(data["loyalty_points"], int)
+
+    assert 2 <= len(data["name"]) <= 50
     assert data["phone"].isdigit()
     assert len(data["phone"]) == 10
 
@@ -53,6 +53,7 @@ def test_put_profile_valid(base_url, valid_headers):
 
     assert "message" in data
     assert isinstance(data["message"], str)
+    assert data["message"] == "Profile updated successfully"
 
 def test_put_profile_missing_name(base_url, valid_headers):
     payload = {"phone": "9876543210"}
