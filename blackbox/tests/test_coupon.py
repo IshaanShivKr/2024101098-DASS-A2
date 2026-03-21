@@ -70,6 +70,10 @@ def test_remove_coupon_missing_header(base_url):
     r = post(f"{base_url}/coupon/remove")
     assert r.status_code == 401
 
+def test_remove_coupon_invalid_header(base_url):
+    r = post(f"{base_url}/coupon/remove", headers={"X-Roll-Number": "abc"})
+    assert r.status_code == 400
+
 def test_apply_coupon_missing_header(base_url):
     payload = {"coupon_code": "BONUS75"}
     r = post(f"{base_url}/coupon/apply", json=payload)
