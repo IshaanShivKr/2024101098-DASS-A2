@@ -41,6 +41,6 @@ class Mission:
     name: str
     mission_type: MissionType
     required_roles: list[Role]
-    assigned_members: list[str] = field(default_factory=list)
+    assigned_members: list[CrewMember] = field(default_factory=list)
     started: bool = False
     completed: bool = False

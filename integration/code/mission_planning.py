@@ -40,13 +40,15 @@ class MissionPlanning:
         mission = self._get_mission(mission_name)
 
         assigned_members = []
+        selected_names = set()
 
         for role in mission.required_roles:
-            member = self._find_available_member(role)
+            member = self._find_available_member(role, selected_names)
             if member is None:
                 raise ValueError(f"No available member for role: {role.value}")
 
             assigned_members.append(member)
+            selected_names.add(member.name)
 
         for member in assigned_members:
             member.available = False
@@ -88,8 +90,12 @@ class MissionPlanning:
             raise ValueError("Mission not found.")
         return self.system.missions[name]
 
-    def _find_available_member(self, role: Role):
+    def _find_available_member(self, role: Role, excluded_names: set[str]):
         for member in self.system.crew.values():
-            if member.role == role and member.available:
+            if (
+                member.role == role
+                and member.available
+                and member.name not in excluded_names
+            ):
                 return member
         return None
